@@ -3,7 +3,7 @@
 Descripción
 El veterinarian-controller gestiona operaciones relacionadas con veterinarios en el sistema.
 
-Endpoints
+## Endpoints Veterinarios
 ### Agregar Mascota a Veterinario
    PUT /veterinarians/addPet/{veterinarianId}/{petId}
    Descripción: Asocia una mascota con un veterinario.
@@ -30,7 +30,7 @@ Endpoints
    Descripción
    El record-controller gestiona operaciones relacionadas con registros de mascotas en el sistema.
 
-Endpoints
+## Endpoints Registro 
 ### Agregar Registro para Mascota
    POST /records/{petId}
    Descripción: Crea un nuevo registro para una mascota.
@@ -53,7 +53,7 @@ Endpoints
    Descripción
    El pet-controller gestiona operaciones relacionadas con mascotas en el sistema.
 
-Endpoints
+## Endpoints Mascotas
 ### Obtener Todas las Mascotas
    GET /pets
    Descripción: Obtiene una lista de todas las mascotas.
@@ -74,7 +74,7 @@ Endpoints
    Descripción
    El client-controller gestiona operaciones relacionadas con clientes en el sistema.
 
-Endpoints
+## Endpoints Clientes o dueños
 ### Obtener Todos los Clientes
    GET /clients
    Descripción: Obtiene una lista de todos los clientes.

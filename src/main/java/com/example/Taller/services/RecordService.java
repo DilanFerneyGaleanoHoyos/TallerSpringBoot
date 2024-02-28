@@ -38,4 +38,5 @@ public class RecordService {
     public void deleteById(Integer id) {
         recordRepository.deleteById(id);
     }
+
 }

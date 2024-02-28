@@ -46,6 +46,27 @@ public class VeterinarianService {
     }
 
     public void deleteById(Integer id) {
+        // Buscar al veterinario por su ID
+        Veterinarian veterinarian = veterinarianRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Veterinarian not found with ID: " + id));
+
+        // Desvincular al veterinario de todas las mascotas
+        List<Pet> pets = veterinarian.getPets();
+        for (Pet pet : pets) {
+            pet.setVeterinarians(null); // Desvincular la mascota del veterinario
+        }
+
+        // Finalmente, eliminar al veterinario
         veterinarianRepository.deleteById(id);
+    }
+    public Veterinarian update(Integer id, Veterinarian updatedVeterinarian) {
+        Veterinarian existingVeterinarian = veterinarianRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Veterinarian not found with ID: " + id));
+
+        existingVeterinarian.setName(updatedVeterinarian.getName());
+        existingVeterinarian.setSpecialty(updatedVeterinarian.getSpecialty());
+
+
+        return veterinarianRepository.save(existingVeterinarian);
     }
 }

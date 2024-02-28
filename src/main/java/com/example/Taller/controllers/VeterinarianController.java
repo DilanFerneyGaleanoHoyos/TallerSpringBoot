@@ -78,4 +78,9 @@ public class VeterinarianController {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR, null);
         }
     }
+    @PutMapping("/{id}")
+    public ResponseEntity<Veterinarian> updateVeterinarian(@PathVariable Integer id, @RequestBody Veterinarian updatedVeterinarian) {
+        Veterinarian veterinarian = veterinarianService.update(id, updatedVeterinarian);
+        return ResponseEntity.ok().body(veterinarian);
+    }
 }

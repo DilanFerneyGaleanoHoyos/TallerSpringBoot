@@ -62,4 +62,10 @@ public class PetController {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR, null);
         }
     }
+    @PutMapping("/{id}")
+    public ResponseEntity<Pet> updatePet(@PathVariable Integer id, @RequestBody Pet updatedPet) {
+        Pet pet = petService.update(id, updatedPet);
+        return ResponseEntity.ok().body(pet);
+    }
+
 }

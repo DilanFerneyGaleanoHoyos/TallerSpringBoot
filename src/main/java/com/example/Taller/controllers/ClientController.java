@@ -60,4 +60,9 @@ public class ClientController {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR, null);
         }
     }
+    @PutMapping("/{id}")
+    public ResponseEntity<Client> updateClient(@PathVariable Integer id, @RequestBody Client updatedClient) {
+        Client client = clientService.update(id, updatedClient);
+        return ResponseEntity.ok().body(client);
+    }
 }

@@ -44,18 +44,32 @@ public class PetService {
     }
 
     public void deleteById(Integer id) {
+        // Buscar la mascota por su ID
+        Pet pet = petRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Pet not found with ID: " + id));
+
+        // Desvincular la mascota de cualquier cliente
+        pet.setClient(null);
+
+        // Desvincular la mascota de cualquier veterinario
+        pet.setVeterinarians(null);
+
+        // Finalmente, eliminar la mascota
         petRepository.deleteById(id);
     }
 
-    public Pet update(Pet pet) {
+    public Pet update(Integer id, Pet updatedPet) {
+        // Buscar la mascota existente por su ID
+        Pet existingPet = petRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Pet not found with ID: " + id));
 
-        Pet existingPet = petRepository.findById(pet.getId())
-                .orElseThrow(() -> new RuntimeException("Pet not found with ID: " + pet.getId()));
+        // Actualizar los campos de la mascota existente con los valores proporcionados en updatedPet
+        existingPet.setName(updatedPet.getName());
+        existingPet.setSpecies(updatedPet.getSpecies());
 
-        existingPet.setName(pet.getName());
-        existingPet.setSpecies(pet.getSpecies());
 
         return petRepository.save(existingPet);
     }
+
 
 }
